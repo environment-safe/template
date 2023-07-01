@@ -42,16 +42,6 @@ Once you've done that, change directories into the project directory and run `./
 
 LAST
 
-Uncomment the following commented lines in `.husky/precommit` to enable build of all the secondary artifacts (docs, types and commonjs).
-
-```bash
-#npm run build-commonjs
-npm run require-test
-#npm run generate-docs
-#npm run generate-types
-#npm run add-generated-files-to-commit
-```
-
 When you commit, the rest of the artifacts will be generated and added to your commit.
 
 When you come back this will all be gone. Good Luck!
