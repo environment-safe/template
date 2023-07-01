@@ -2,7 +2,7 @@
 environment-safe-template
 =========================
 
-This setup normalizes a **from source** usage for all environments (node/browser+modules/commonjs). It babel compiles the commonjs files into /dist and it (from jsdoc) compiles both docs (in /docs) and typescript types (alongside the source in /src).
+This setup normalizes a **from source** usage for all environments ([node](https://nodejs.org/)/[browser](https://developer.mozilla.org/en-US/docs/Web/JavaScript)+[modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)/[commonjs](https://en.wikipedia.org/wiki/CommonJS)). It [babel]() compiles the commonjs files into /dist and it (from [jsdoc](https://jsdoc.app/)) compiles both docs (in `/docs`) and typescript types (alongside the source in `/src`).
 
 It sets up a single test that is used in headless, browser and node modes, has a sane set of lint rules and husky bindings to make sure you:
 
@@ -17,7 +17,7 @@ This allows you to use either source tree for compilation as well.
 Requirements
 ------------
 
-You need a copy of [`jq`]() installed in order to initialize
+You need a copy of [`jq`](https://jqlang.github.io/jq/) installed in order to initialize
 
 Usage
 -----
@@ -34,18 +34,6 @@ Manually fork, remove `.git/`, `git init` then add the remote, and check into a 
 THEN
 
 Once you've done that, change directories into the project directory and run `./initialize` which will configure your `package.json`, your `LICENSE` and your `README.md`(this file) and remove any artifacts as well as itself and stage the changes for commit.
-
-LAST
-
-Uncomment the following commented lines in `.husky/precommit` to enable build of all the secondary artifacts (docs, types and commonjs).
-
-```bash
-#npm run build-commonjs
-npm run require-test
-#npm run generate-docs
-#npm run generate-types
-#npm run add-generated-files-to-commit
-```
 
 When you commit, the rest of the artifacts will be generated and added to your commit.
 
