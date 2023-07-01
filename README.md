@@ -3,7 +3,7 @@
 environment-safe-template
 =========================
 
-This setup normalizes a **from source** usage for all environments ([node](https://nodejs.org/)/[browser](https://developer.mozilla.org/en-US/docs/Web/JavaScript)+[modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)/[commonjs](https://en.wikipedia.org/wiki/CommonJS)). It [babel]() compiles the commonjs files into /dist and it (from [jsdoc](https://jsdoc.app/)) compiles both docs (in `/docs`) and typescript types (alongside the source in `/src`).
+This setup normalizes a **from source** usage for all environments ([node](https://nodejs.org/)/[browser](https://developer.mozilla.org/en-US/docs/Web/JavaScript)+[modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)/[commonjs](https://en.wikipedia.org/wiki/CommonJS)). It [babel]() compiles the commonjs files into `/dist` and it (from [jsdoc](https://jsdoc.app/)) compiles both docs (in `/docs`) and typescript types (alongside the source in `/src`).
 
 It sets up a single test that is used in headless, browser and node modes, has a sane set of lint rules and husky bindings to make sure you:
 
