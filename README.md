@@ -24,12 +24,16 @@ Usage
 -----
 
 [fork as a template in github]( https://docs.github.com/en/enterprise-server@2.22/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template#creating-a-repository-from-a-template ) then clone it locally
+
 OR
+
 use the [github cli]() to create a template from the repo
 ```bash
     gh repo create --template="khrome/environment-safe-template" <new-repo-name>
 ```
+
 OR
+
 Manually fork, remove `.git/`, `git init` then add the remote, and check into a repository you create and then add that as a remote and push to `master`/`main`. Make sure your description is set. 
 
 THEN
