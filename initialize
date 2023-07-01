@@ -12,8 +12,6 @@ PROJECT_ISSUES_URL="${PROJECT_ISSUES_URL//$s/}"
 PROJECT_URL=`cat github.json | jq '.svn_url' | tr -d '"'`
 YEAR=`date +%Y`
 sleep 3
-#CURL_COMMAND="curl $PROJECT_OWNER_URL"
-#`$CURL_COMMAND`
 curl "https://api.github.com/users/${PROJECT_OWNER}" -s -o user.json
 PROJECT_OWNER_NAME=`cat user.json | jq '.name' | tr -d '"'`
 PROJECT_OWNER_URL=`cat user.json | jq '.blog' | tr -d '"'`
@@ -31,6 +29,9 @@ mv README-COPY.md README.md
 cat LICENSE | sed -e "s/∞/${YEAR}/" > LICENSE-COPY
 cat LICENSE-COPY | sed -e "s/Abbey Hawk Sparrow/${PROJECT_OWNER_NAME}/" > LICENSE
 rm LICENSE-COPY
+npm install
 rm user.json
 rm github.json
 rm -- "$0"
+git add LICENSE README.md initialize package.json
+git commit -m "initialized"
