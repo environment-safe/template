@@ -27,7 +27,7 @@ Usage
 
 OR
 
-use the [github cli]() to create a template from the repo
+use the [github cli](https://cli.github.com/) to create a template from the repo
 ```bash
     gh repo create --template="khrome/environment-safe-template" <new-repo-name>
 ```
@@ -39,6 +39,18 @@ Manually fork, remove `.git/`, `git init` then add the remote, and check into a 
 THEN
 
 Once you've done that, change directories into the project directory and run `./initialize` which will configure your `package.json`, your `LICENSE` and your `README.md`(this file) and remove any artifacts as well as itself and stage the changes for commit.
+
+LAST
+
+Uncomment the following commented lines in `.husky/precommit` to enable build of all the secondary artifacts (docs, types and commonjs).
+
+```bash
+#npm run build-commonjs
+npm run require-test
+#npm run generate-docs
+#npm run generate-types
+#npm run add-generated-files-to-commit
+```
 
 When you commit, the rest of the artifacts will be generated and added to your commit.
 
