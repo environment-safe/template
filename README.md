@@ -79,6 +79,11 @@ to run the same test inside docker:
 npm run container-test
 ```
 
+Run the commonjs tests against the `/dist` commonjs source (generated with the `build-commonjs` target).
+```bash
+npm run require-test
+```
+
 Development
 -----------
 All work is done in the .mjs files and will be transpiled on commit to commonjs and tested.
