@@ -34,7 +34,10 @@ use the [github cli](https://cli.github.com/) to create a template from the repo
 
 OR
 
-Manually fork, remove `.git/`, `git init` then add the remote, and check into a repository you create and then add that as a remote and push to `master`/`main`. Make sure your description is set. 
+Use degit to copy the repo with no history
+```bash
+    npx degit environment-safe/template  <new-repo-name>
+```
 
 THEN
 
@@ -49,8 +52,8 @@ When you come back this will all be gone. Good Luck!
 Roadmap
 -------
 
-- [ ] - submodule for minimal project footprint
-- [ ] - support windows development
+- [X] - submodule for minimal project footprint
+- [-] - support windows development
 - [ ] - support multiple licenses
 - [ ] - support electron
 - [ ] - support cordova

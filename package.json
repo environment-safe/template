@@ -1,19 +1,49 @@
 {
-    "name": "environment-safe-template",
-    "version": "0.0.1",
+    "name": "@environment-safe/template",
+    "version": "0.0.2",
     "main": "dist/index.cjs",
     "module": "src/index.mjs",
-    "homepage": "https://github.com/khrome/environment-safe-template",
+    "homepage": "https://github.com/environment-safe/template",
     "description": "A template for buildless module development",
     "keywords": [],
     "author": "Abbey Hawk Sparrow <@khrome> (http://patternweaver.com)",
     "contributors": [],
     "repository": {
           "type": "git",
-          "url": "git@github.com:khrome/environment-safe-template.git"
+          "url": "git@github.com:environment-safe/template.git"
      },
     "bugs": {
-          "url": "https://github.com/khrome/environment-safe-template/issues"
+          "url": "https://github.com/environment-safe/template/issues"
+    },
+    "moka": {
+        "firefox": {
+            "engine": "@open-automaton/playwright-mining-engine",
+            "options": {
+                "type": "firefox"
+            }
+        },
+        "chrome": {
+            "engine": "@open-automaton/playwright-mining-engine",
+            "options": {
+                "type": "chromium"
+            }
+        },
+        "safari": {
+            "engine": "@open-automaton/playwright-mining-engine",
+            "options": {
+                "type": "webkit"
+            }
+        },
+        "stub": "src/stub.mjs",
+        "stubs": [
+            "express",
+            "module",
+            "path"
+        ],
+        "shims": {
+            "chai": "node_modules/chai/chai.js",
+            "browser-or-node": "node_modules/browser-or-node/src/index.js"
+        }
     },
     "license": "MIT",
     "devDependencies": {
@@ -23,25 +53,27 @@
         "babel-plugin-search-and-replace": "^1.1.1",
         "babel-plugin-transform-import-meta": "^2.2.0",
         "chai": "^4.3.7",
-        "environment-safe-chai": "^0.0.1",
+        "@environment-safe/chai":"^0.1.0",
+        "@environment-safe/commonjs-builder":"^0.0.1",
+        "@environment-safe/jsdoc-builder":"^0.0.2",
         "eslint": "^8.43.0",
         "husky": "^8.0.3",
-        "jsdoc": "^3.6.11",
-        "jsdoc-to-markdown": "^8.0.0",
-        "mocha": "^10.2.0",
-        "mocha-chrome": "^2.2.0",
-        "tsd-jsdoc": "^2.5.0"
+        "mocha": "^10.2.0"
     },
     "scripts": {
         "lint": "./node_modules/.bin/eslint src/*.mjs test/*.mjs",
         "import-test": "./node_modules/.bin/mocha test/test.mjs",
         "require-test": "./node_modules/.bin/mocha test/test.cjs",
-        "build-commonjs": "./node_modules/.bin/babel src --out-dir dist --out-file-extension .cjs",
-        "headless-browser-test": "./node_modules/.bin/mocha-chrome test/headless.html --chrome-flags '[ \"--disable-web-security\", \"--disable-site-isolation-trials\", \"--allow-file-access-from-files\", \"--allow-insecure-localhost\", \"--allow-running-insecure-content\"]' --ignore-exceptions",
-        "browser-test": "open http://localhost:8000/test/browser.html; npx http-server -p 8000",
+        "build-commonjs": "build-commonjs",
+        "local-server": "open 'http://localhost:8085/' ; npx http-server -p 8085",
+        "headless-browser-test": "npm run headless-chrome-test; npm run headless-firefox-test; npm run headless-safari-test",
+        "headless-chrome-test": "./bin/moka.mjs --server . --browser chrome --relaxed --prefix ../ test/test.mjs",
+        "headless-firefox-test": "./bin/moka.mjs --server . --browser firefox --relaxed --prefix ../ test/test.mjs",
+        "headless-safari-test": "./bin/moka.mjs --server . --browser safari --relaxed --prefix ../ test/test.mjs",
+        "browser-test": "./bin/moka.mjs --server . --local-browser --relaxed --prefix ../ test/test.mjs",
         "container-test": "docker build . -t environment-safe-package.json -f ./containers/test.dockerfile; docker logs --follow \"$(docker run -d environment-safe-package.json)\"",
-        "generate-docs": "for i in src/*.mjs; do echo \"generating docs for: ${i}\";./node_modules/.bin/jsdoc2md -c .jsdoc.json \"${i}\" > \"docs/$(basename ${i%.mjs}).md\"; done",
-        "generate-types": "for i in src/*.mjs; do echo \"generating types for: ${i}\"; ./node_modules/.bin/jsdoc -t node_modules/tsd-jsdoc/dist -c .jsdoc.json \"${i}\"; mv out/types.d.ts \"src/$(basename ${i%.mjs}).d.ts\"; done; rmdir out",
+        "build-docs": "build-jsdoc docs",
+        "build-types": "build-jsdoc types",
         "add-generated-files-to-commit": "git add docs/*.md; git add src/*.d.ts; git add dist/*.cjs",
         "prepare": "husky install"
     },
