@@ -53,7 +53,7 @@ Roadmap
 -------
 
 - [X] - submodule for minimal project footprint
-- [-] - support windows development
+- [ ] - support windows development
 - [ ] - support multiple licenses
 - [ ] - support electron
 - [ ] - support cordova
