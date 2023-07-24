@@ -9,11 +9,11 @@
     "author": "Abbey Hawk Sparrow <@khrome> (http://patternweaver.com)",
     "contributors": [],
     "repository": {
-          "type": "git",
-          "url": "git@github.com:environment-safe/template.git"
-     },
+        "type": "git",
+        "url": "git@github.com:environment-safe/template.git"
+    },
     "bugs": {
-          "url": "https://github.com/environment-safe/template/issues"
+        "url": "https://github.com/environment-safe/template/issues"
     },
     "moka": {
         "firefox": {
@@ -50,18 +50,19 @@
         "@babel/cli": "^7.22.5",
         "@babel/core": "^7.22.5",
         "@babel/plugin-transform-modules-commonjs": "^7.22.5",
+        "@environment-safe/chai": "^0.1.0",
+        "@environment-safe/commonjs-builder": "^0.0.3",
+        "@environment-safe/jsdoc-builder": "^0.0.2",
         "babel-plugin-search-and-replace": "^1.1.1",
         "babel-plugin-transform-import-meta": "^2.2.0",
         "chai": "^4.3.7",
-        "@environment-safe/chai":"^0.1.0",
-        "@environment-safe/commonjs-builder":"^0.0.1",
-        "@environment-safe/jsdoc-builder":"^0.0.2",
         "eslint": "^8.43.0",
         "husky": "^8.0.3",
         "mocha": "^10.2.0"
     },
     "scripts": {
         "lint": "./node_modules/.bin/eslint src/*.mjs test/*.mjs",
+        "test": "npm run import-test; npm run browser-test; npm run require-test",
         "import-test": "./node_modules/.bin/mocha test/test.mjs",
         "require-test": "./node_modules/.bin/mocha test/test.cjs",
         "build-commonjs": "./node_modules/@environment-safe/commonjs-builder/bin/build.mjs",
