@@ -1,5 +1,6 @@
-/* global describe:false, it:false */
+/* global describe:false */
 import { chai } from '@environment-safe/chai';
+import { it } from '@open-automaton/moka';
 import { } from '../src/index.mjs';
 const should = chai.should();
 
