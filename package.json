@@ -1,8 +1,24 @@
 {
     "name": "@environment-safe/template",
     "version": "0.0.2",
-    "main": "dist/index.cjs",
+    "type": "module",
+    "main": "dist/index.mjs",
     "module": "src/index.mjs",
+    "commonjs": "dist/index.cjs",
+    "exports": {
+        ".": {
+            "import": "./src/index.mjs",
+            "require": "./dist/index.cjs"
+        },
+        "./src/index.mjs": {
+            "import": "./src/index.mjs",
+            "require": "./dist/index.cjs"
+        },
+        "./dist/index.cjs": {
+            "import": "./src/index.mjs",
+            "require": "./dist/index.cjs"
+        }
+    },
     "homepage": "https://github.com/environment-safe/template",
     "description": "A template for buildless module development",
     "keywords": [],
