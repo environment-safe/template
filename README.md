@@ -29,14 +29,17 @@ OR
 
 use the [github cli](https://cli.github.com/) to create a template from the repo
 ```bash
-    gh repo create --template="khrome/environment-safe-template" <new-repo-name>
+    gh repo create --template="@environment-safe/template" <new-repo-name>
 ```
 
 OR
 
 Use degit to copy the repo with no history
 ```bash
-    npx degit environment-safe/template  <new-repo-name>
+    mkdir <new-repo-name>
+    cd <new-repo-name>
+    npx degit environment-safe/template
+    git init
 ```
 
 THEN
