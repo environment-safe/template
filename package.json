@@ -58,6 +58,8 @@
         "stubs": [
             "express",
             "module",
+            "os",
+            "fs",
             "path"
         ],
         "shims": {
@@ -82,17 +84,17 @@
         "mocha": "^10.2.0"
     },
     "scripts": {
-        "lint": "./node_modules/.bin/eslint src/*.mjs test/*.mjs",
+        "lint": "eslint src/*.mjs test/*.mjs",
         "test": "npm run import-test; npm run browser-test; npm run require-test",
-        "import-test": "./node_modules/.bin/mocha test/test.mjs",
-        "require-test": "./node_modules/.bin/mocha test/test.cjs",
+        "import-test": "mocha test/test.mjs",
+        "require-test": "mocha test/test.cjs",
         "build-commonjs": "./node_modules/@environment-safe/commonjs-builder/bin/build.mjs",
         "local-server": "open 'http://localhost:8085/' ; npx http-server -p 8085",
         "headless-browser-test": "npm run headless-chrome-test; npm run headless-firefox-test; npm run headless-safari-test",
-        "headless-chrome-test": "moka --server . --browser chrome --relaxed --prefix ../ test/test.mjs",
-        "headless-firefox-test": "moka --server . --browser firefox --relaxed --prefix ../ test/test.mjs",
-        "headless-safari-test": "moka --server . --browser safari --relaxed --prefix ../ test/test.mjs",
-        "browser-test": "moka --server . --local-browser --relaxed --prefix ../ test/test.mjs",
+        "headless-chrome-test": "moka --server . --browser chrome test/test.mjs",
+        "headless-firefox-test": "moka --server . --browser firefox test/test.mjs",
+        "headless-safari-test": "moka --server . --browser safari test/test.mjs",
+        "browser-test": "moka --server . --local-browser test/test.mjs",
         "container-test": "docker build . -t environment-safe-package.json -f ./containers/test.dockerfile; docker logs --follow \"$(docker run -d environment-safe-package.json)\"",
         "build-docs": "build-jsdoc docs",
         "build-types": "build-jsdoc types",
